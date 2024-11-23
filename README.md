@@ -16,10 +16,15 @@ You will be prompted to enter your sudo password to install the compiled binary 
 ## Usage
 
 ispdf takes several arguments including:
+
     -h 
+    
         Displays the help menu 
+        
     -a 
+    
         Add a transaction record
+        
     -r 
         Remove a transaction record
 
