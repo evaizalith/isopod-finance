@@ -44,6 +44,13 @@ int main(int argc, char* argv[]) {
         addTransaction(&database, trans);
     }
 
+    if (args.removeTransaction) {
+        transaction_t trans;
+        trans.id = args.transID;
+
+        removeTransaction(&database, trans);
+    }
+
     printf("Database '%s' created\n", database.name);
     return 0;
 }

@@ -67,16 +67,20 @@ int addTransaction(database_t* database, transaction_t trans) {
     return 0;
 }
 
-union transactionResult_t removeTransaction(database_t* db, transaction_t trans) {
-    char buf[12];
-    snprintf(buf, 12, "%d", trans.id);
-    char* sql1 = "SELECT * FROM Transactions WHERE id = ";
-    char* sql2 = "DELETE * FROM Transactions WHERE id = ";
-    strcat(sql1, buf);
-    strcat(sql2, buf);
+union transactionResult_t removeTransaction(database_t* database, transaction_t trans) {
+    char sql2[256];
+    snprintf(sql2, 256, "DELETE FROM Transactions WHERE id = '%i';", trans.id);
 
     union transactionResult_t result;
 
+    char* err;
+    int ret = sqlite3_exec(database->db, sql2, callback, 0, &err);
+    if (ret != SQLITE_OK) {
+        printDbError(err, __func__, __FILE__);
+        result.error = 1;
+    }
+
+    result.error = 0;
     return result;
 }
 
