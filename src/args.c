@@ -36,6 +36,10 @@ int parseArgs(arguments_t* args, int argc, char* argv[]) {
         if (strncmp(argv[i], "-r", 2) == 0) { args->removeTransaction = 1; remLoc = i; }
     }
 
+    if (args->interactiveShell == 0 && args->addTransaction == 0 && args->removeTransaction == 0) {
+        return -1;
+    }
+
     if (args->addTransaction == 1) {
         if (argc < 7) {
             printf(TERM_COLOR_RED "Not enough arguments to add transaction\n" TERM_COLOR_RESET);
@@ -48,11 +52,14 @@ int parseArgs(arguments_t* args, int argc, char* argv[]) {
         args->transType = malloc(strlen(argv[addLoc + 2]) + 1);
         strcpy(args->transType, argv[addLoc + 2]);
 
-        args->transDate = malloc(strlen(argv[addLoc + 3]) + 1);
-        strcpy(args->transDate, argv[addLoc + 3]);
+        args->transPartner = malloc(strlen(argv[addLoc + 3] + 1));
+        strcpy(args->transPartner, argv[addLoc + 3]);
 
-        args->transNotes = malloc(strlen(argv[addLoc + 4]) + 1);
-        strcpy(args->transNotes, argv[addLoc + 4]);
+        args->transDate = malloc(strlen(argv[addLoc + 4]) + 1);
+        strcpy(args->transDate, argv[addLoc + 4]);
+
+        args->transNotes = malloc(strlen(argv[addLoc + 5]) + 1);
+        strcpy(args->transNotes, argv[addLoc + 5]);
     }
 
     if (args->removeTransaction == 1) {
