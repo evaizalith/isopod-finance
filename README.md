@@ -6,9 +6,13 @@ Isopod-Finance, or ispdf, is a CLI finance manager.
 
 1. Ensure sqlite3 is installed on your system.
 2. Execute the following commands:
+   
 `git clone https://github.com/evaizalith/isopod-finance.git`
+
 `cd isopod-finance`
+
 `chmod +x install.sh`
+
 `./install.sh`
 
 You will be prompted to enter your sudo password to install the compiled binary into your /bin/ folder. If you choose not to enter your sudo password, the binary will be placed in the build directory.
