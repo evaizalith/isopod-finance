@@ -24,7 +24,7 @@ typedef struct {
     int transID;
 } arguments_t;
 
-int parseArgs(arguments_t args, int argc, char* argv[]); 
+int parseArgs(arguments_t* args, int argc, char* argv[]); 
 void printHelp(int argc, char* argv[]);
 
 #endif
